@@ -237,7 +237,7 @@ export default function AdminConfigPanel() {
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
 							onClick={handlePreview}
-							className='bg-card rounded-xl border px-4 py-2 text-sm'>
+							className='admin-btn'>
 							预览
 						</motion.button>
 						<motion.button
@@ -245,7 +245,7 @@ export default function AdminConfigPanel() {
 							whileTap={{ scale: 0.95 }}
 							onClick={handleCancel}
 							disabled={isSaving}
-							className='bg-card rounded-xl border px-4 py-2 text-sm disabled:opacity-60'>
+							className='admin-btn disabled:opacity-60'>
 							取消
 						</motion.button>
 						<motion.button

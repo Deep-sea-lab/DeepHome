@@ -77,7 +77,7 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 	}
 
 	return (
-		<DialogModal open onClose={onClose} className='card static w-md max-sm:w-full'>
+		<DialogModal open onClose={onClose} className='w-md max-sm:w-full'>
 			<div>
 				<div className='mb-4 flex items-center gap-4'>
 					<div className='group relative cursor-pointer' onClick={() => setShowImageDialog(true)}>
@@ -165,10 +165,10 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 			</div>
 
 			<div className='mt-6 flex gap-3'>
-				<button onClick={onClose} className='flex-1 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm transition-colors hover:bg-gray-50'>
+				<button onClick={onClose} className='admin-btn flex-1'>
 					取消
 				</button>
-				<button onClick={handleSubmit} className='brand-btn flex-1 justify-center px-4'>
+				<button onClick={handleSubmit} className='admin-btn-primary flex-1 justify-center'>
 					{project ? '保存' : '添加'}
 				</button>
 			</div>

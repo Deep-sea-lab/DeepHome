@@ -118,7 +118,7 @@ export function BackgroundImagesSection({ formData, setFormData, backgroundImage
 					<button
 						type='button'
 						onClick={handleClearBackgroundImage}
-						className='text-secondary rounded-lg border bg-white/60 px-3 py-1 text-xs font-medium hover:bg-white/80'>
+						className='text-secondary admin-btn px-3 py-1 text-xs font-medium'>
 						取消设置
 					</button>
 				)}
@@ -138,7 +138,7 @@ export function BackgroundImagesSection({ formData, setFormData, backgroundImage
 								<button
 									type='button'
 									onClick={() => handleSetCurrentBackgroundImage(item.id)}
-									className={`block w-full overflow-hidden rounded-xl border bg-white/60 transition-all ${
+									className={`block w-full overflow-hidden admin-inner transition-all ${
 										isActive ? 'ring-brand shadow-md ring-2' : 'hover:border-brand/60'
 									}`}>
 									<img src={src} alt='background preview' className='h-24 w-full object-cover' />

@@ -129,14 +129,14 @@ export default function Page() {
 							whileTap={{ scale: 0.95 }}
 							onClick={handleCancel}
 							disabled={isSaving}
-							className='rounded-xl border bg-white/60 px-4 py-2 text-sm disabled:opacity-60'>
+							className='admin-btn disabled:opacity-60'>
 							取消
 						</motion.button>
 						<motion.button
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
 							onClick={openManageDialog}
-							className='rounded-xl border bg-white/60 px-4 py-2 text-sm'>
+							className='admin-btn'>
 							管理
 						</motion.button>
 						<motion.button
@@ -150,14 +150,14 @@ export default function Page() {
 					</div>
 				</div>
 
-				<div className='rounded-xl bg-white/60 p-4 text-center'>
+				<div className='admin-inner text-center'>
 					<p className='text-secondary mb-1 text-xs'>当前随机句子：</p>
 					<p className='text-xl leading-relaxed font-semibold'>{currentSnippet || '无'}</p>
 				</div>
 
 				<div className='space-y-2'>
 					<p className='text-secondary text-xs'>所有句子（{snippets.length}）</p>
-					<div className='max-h-[420px] space-y-1 overflow-y-auto rounded-xl bg-white/60 p-2 text-sm'>
+					<div className='max-h-[420px] space-y-1 overflow-y-auto admin-inner p-2 text-sm'>
 						{snippets.length === 0 && <p className='text-secondary py-6 text-center'>暂无句子</p>}
 						{snippets.map((item, index) => (
 							<div key={`${item}-${index}`} className='rounded-lg px-3 py-2'>
@@ -168,7 +168,7 @@ export default function Page() {
 				</div>
 			</Card>
 
-			<DialogModal open={isManageOpen} onClose={cancelManageChanges} className='card static w-[520px] max-sm:w-full'>
+			<DialogModal open={isManageOpen} onClose={cancelManageChanges} className='w-[520px] max-sm:w-full'>
 				<div className='space-y-4'>
 					<div className='flex items-center gap-3'>
 						<input
@@ -176,7 +176,7 @@ export default function Page() {
 							value={newSnippet}
 							onChange={e => setNewSnippet(e.target.value)}
 							placeholder='新增'
-							className='flex-1 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm focus:outline-none'
+							className='admin-input flex-1'
 						/>
 						<button onClick={handleAddDraft} className='brand-btn flex items-center gap-1 px-4 py-2 text-sm'>
 							<Plus className='h-4 w-4' />
@@ -199,10 +199,10 @@ export default function Page() {
 					<div className='mt-4 flex gap-3'>
 						<button
 							onClick={cancelManageChanges}
-							className='flex-1 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm transition-colors hover:bg-gray-50'>
+							className='admin-btn flex-1'>
 							取消
 						</button>
-						<button onClick={applyManageChanges} className='brand-btn flex-1 justify-center px-4'>
+						<button onClick={applyManageChanges} className='admin-btn-primary flex-1 justify-center'>
 							保存
 						</button>
 					</div>

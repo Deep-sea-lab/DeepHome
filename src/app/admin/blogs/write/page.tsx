@@ -31,7 +31,7 @@ export default function WritePage() {
 					<button
 						type='button'
 						onClick={() => router.push('/admin/blogs')}
-						className='rounded-xl border bg-white/60 px-3 py-1.5 text-xs transition-colors hover:bg-white/80'>
+						className='admin-btn px-3 py-1.5 text-xs'>
 						返回博客管理
 					</button>
 				</div>

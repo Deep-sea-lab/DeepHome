@@ -67,7 +67,7 @@ export default function UploadDialog({ onClose, onSubmit }: UploadDialogProps) {
 	}
 
 	return (
-		<DialogModal open onClose={handleClose} className='card w-md max-sm:w-full'>
+		<DialogModal open onClose={handleClose} className='w-md max-sm:w-full'>
 			<div className='space-y-4'>
 				<h2 className='text-xl font-bold'>上传图片</h2>
 
@@ -106,12 +106,12 @@ export default function UploadDialog({ onClose, onSubmit }: UploadDialogProps) {
 
 							<div className='mt-3 flex items-center justify-between'>
 								<span className='text-secondary text-xs'>已选择 {images.length} 张图片</span>
-								<button
-									type='button'
-									onClick={() => fileInputRef.current?.click()}
-									className='rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-xs text-gray-700 transition-colors hover:bg-gray-50'>
-									继续添加
-								</button>
+							<button
+								type='button'
+								onClick={() => fileInputRef.current?.click()}
+								className='admin-btn px-3 py-1.5 text-xs'>
+								继续添加
+							</button>
 							</div>
 						</>
 					)}
@@ -132,10 +132,10 @@ export default function UploadDialog({ onClose, onSubmit }: UploadDialogProps) {
 					<button
 						type='button'
 						onClick={handleClose}
-						className='flex-1 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm transition-colors hover:bg-gray-50'>
+						className='admin-btn flex-1'>
 						取消
 					</button>
-					<button type='button' onClick={handleSubmit} className='brand-btn flex-1 justify-center px-4'>
+					<button type='button' onClick={handleSubmit} className='admin-btn-primary flex-1 justify-center'>
 						确认上传
 					</button>
 				</div>

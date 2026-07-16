@@ -65,7 +65,7 @@ export default function LogoUploadDialog({ currentLogo, onClose, onSubmit }: Log
 		onClose()
 	}
 	return (
-		<DialogModal open onClose={handleClose} className='card w-md'>
+		<DialogModal open onClose={handleClose} className='w-md'>
 			<h2 className='mb-4 text-xl font-bold'>选择图标</h2>
 			<form onSubmit={handleSubmit} className='space-y-4'>
 				<div>
@@ -106,22 +106,22 @@ export default function LogoUploadDialog({ currentLogo, onClose, onSubmit }: Log
 								setPreviewFile(null)
 							}
 						}}
-						placeholder='https://example.com/logo.png'
-						className='focus:ring-brand w-full rounded-lg border border-gray-300 bg-gray-200 px-4 py-2 focus:ring-2 focus:outline-none'
-					/>
-				</div>
+					placeholder='https://example.com/logo.png'
+					className='admin-input w-full focus:ring-brand focus:ring-2'
+				/>
+			</div>
 
-				<div className='flex gap-3 pt-2'>
-					<button type='submit' className='brand-btn flex-1 justify-center rounded-lg px-6 py-2.5'>
-						确认
-					</button>
-					<button
-						type='button'
-						onClick={handleClose}
-						className='flex-1 rounded-lg border border-gray-300 bg-white px-6 py-2.5 transition-colors hover:bg-gray-50'>
-						取消
-					</button>
-				</div>
+			<div className='flex gap-3 pt-2'>
+				<button type='submit' className='admin-btn-primary flex-1 justify-center px-6 py-2.5'>
+					确认
+				</button>
+				<button
+					type='button'
+					onClick={handleClose}
+					className='admin-btn flex-1 px-6 py-2.5'>
+					取消
+				</button>
+			</div>
 			</form>
 		</DialogModal>
 	)

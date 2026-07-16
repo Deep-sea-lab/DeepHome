@@ -214,14 +214,14 @@ export default function Page() {
 							whileTap={{ scale: 0.95 }}
 							onClick={handleCancel}
 							disabled={isSaving}
-							className='rounded-xl border bg-white/60 px-4 py-2 text-sm disabled:opacity-60'>
+							className='admin-btn disabled:opacity-60'>
 							取消
 						</motion.button>
 						<motion.button
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
 							onClick={() => setIsUploadDialogOpen(true)}
-							className='rounded-xl border bg-white/60 px-4 py-2 text-sm'>
+							className='admin-btn'>
 							上传
 						</motion.button>
 						<motion.button

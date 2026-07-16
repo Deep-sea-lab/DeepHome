@@ -76,7 +76,7 @@ export default function CreateDialog({ share, onClose, onSave }: CreateDialogPro
 	}
 
 	return (
-		<DialogModal open onClose={onClose} className='card max-h-[90vh] w-sm overflow-y-auto'>
+		<DialogModal open onClose={onClose} className='max-h-[90vh] w-sm overflow-y-auto'>
 			{/* 卡片样式的内容 */}
 			<div>
 				<div className='mb-4 flex items-center gap-4'>
@@ -152,10 +152,10 @@ export default function CreateDialog({ share, onClose, onSave }: CreateDialogPro
 
 			{/* 操作按钮 */}
 			<div className='mt-6 flex gap-3'>
-				<button onClick={onClose} className='flex-1 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm transition-colors hover:bg-gray-50'>
+				<button onClick={onClose} className='admin-btn flex-1'>
 					取消
 				</button>
-				<button onClick={handleSubmit} className='brand-btn flex-1 justify-center px-4'>
+				<button onClick={handleSubmit} className='admin-btn-primary flex-1 justify-center'>
 					{share ? '保存' : '添加'}
 				</button>
 			</div>

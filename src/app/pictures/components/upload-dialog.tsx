@@ -67,7 +67,7 @@ export default function UploadDialog({ onClose, onSubmit }: UploadDialogProps) {
 	}
 
 	return (
-		<DialogModal open onClose={handleClose} className='card w-md max-sm:w-full'>
+		<DialogModal open onClose={handleClose} className='w-md max-sm:w-full'>
 			<div className='space-y-4'>
 				<h2 className='text-xl font-bold'>上传图片</h2>
 

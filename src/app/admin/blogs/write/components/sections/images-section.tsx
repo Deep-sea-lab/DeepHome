@@ -34,7 +34,7 @@ export function ImagesSection({ delay = 0 }: ImagesSectionProps) {
 					onChange={e => setUrlInput(e.target.value)}
 				/>
 				<button
-					className='rounded-lg border bg-white/70 px-3 py-2 text-sm'
+					className='admin-btn px-3 py-2 text-sm'
 					onClick={() => {
 						const v = urlInput.trim()
 						if (!v) return

@@ -35,7 +35,7 @@ export function HomeLayout({ cardStylesData, setCardStylesData }: HomeLayoutProp
 			<div className='flex items-center justify-between'>
 				<div className='text-secondary text-sm'>（偏移代表相对中心的偏移）</div>
 				<div className='flex shrink-0 items-center gap-2 whitespace-nowrap'>
-					<button type='button' onClick={handleReset} className='bg-card rounded-xl border px-3 py-1.5 text-xs font-medium'>
+					<button type='button' onClick={handleReset} className='admin-btn px-3 py-1.5 text-xs font-medium'>
 						重置
 					</button>
 				</div>

@@ -25,7 +25,7 @@ const MODULES: ModuleItem[] = [
 export default function AdminDashboardPage() {
 	return (
 		<div className='space-y-6'>
-			<motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className='card static p-6'>
+			<motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className='admin-card p-6'>
 				<h2 className='text-lg font-semibold'>欢迎</h2>
 				<p className='text-secondary mt-2 text-sm leading-relaxed'>
 					从这里可以管理网站的全部内容，包括文章、分享、项目、图片、博客等。
@@ -42,7 +42,7 @@ export default function AdminDashboardPage() {
 						transition={{ delay: idx * 0.04 }}>
 						<Link
 							href={m.href}
-							className='card static flex h-full items-start gap-4 p-5 transition-all hover:scale-[1.01] hover:shadow-md'>
+							className='admin-card flex h-full items-start gap-4 p-5 transition-all hover:scale-[1.01] hover:shadow-md'>
 							<div className='bg-brand/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-2xl'>{m.emoji}</div>
 							<div className='min-w-0 flex-1'>
 								<div className='text-base font-medium'>{m.label}</div>
@@ -57,7 +57,7 @@ export default function AdminDashboardPage() {
 				initial={{ opacity: 0, y: 8 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ delay: 0.3 }}
-				className='card static p-6 text-sm leading-relaxed'>
+				className='admin-card p-6 text-sm leading-relaxed'>
 				<h3 className='mb-2 font-medium'>使用提示</h3>
 				<ul className='text-secondary list-disc space-y-1 pl-5'>
 					<li>所有修改都需要先在右上角点击"退出管理"以清除会话密钥</li>

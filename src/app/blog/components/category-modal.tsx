@@ -72,7 +72,7 @@ export function CategoryModal({
 	}, [])
 
 	return (
-		<DialogModal open={open} onClose={onClose} className='card w-[720px] max-w-[90vw] rounded-2xl p-6'>
+		<DialogModal open={open} onClose={onClose} className='w-[720px] max-w-[90vw] p-6'>
 			<div className='mb-4 flex items-center justify-between'>
 				<div className='text-lg font-semibold'>文章分类</div>
 				<button onClick={onClose} className='text-secondary hover:text-brand text-sm'>

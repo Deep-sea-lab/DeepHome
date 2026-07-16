@@ -168,13 +168,13 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 					whileHover={{ scale: 1.03 }}
 					whileTap={{ scale: 0.97 }}
 					onClick={handleLogout}
-					className='rounded-xl border bg-white/60 px-4 py-2 text-sm backdrop-blur-sm transition-colors hover:bg-white/80'>
+					className='admin-btn backdrop-blur-sm'>
 					退出管理
 				</motion.button>
 			</motion.div>
 
 			<div className='grid grid-cols-1 gap-6 lg:grid-cols-[260px_1fr]'>
-				<aside className='card static h-fit p-4 max-sm:p-3'>
+				<aside className='admin-card h-fit p-4 max-sm:p-3'>
 					<nav className='flex flex-col gap-1'>
 						{NAV_ITEMS.map(item => {
 							const isActive = item.href === activeHref

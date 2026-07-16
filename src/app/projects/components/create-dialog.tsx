@@ -77,7 +77,7 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 	}
 
 	return (
-		<DialogModal open onClose={onClose} className='card static w-md max-sm:w-full'>
+		<DialogModal open onClose={onClose} className='w-md max-sm:w-full'>
 			<div>
 				<div className='mb-4 flex items-center gap-4'>
 					<div className='group relative cursor-pointer' onClick={() => setShowImageDialog(true)}>

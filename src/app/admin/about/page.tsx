@@ -90,7 +90,7 @@ export default function Page() {
 							whileTap={{ scale: 0.95 }}
 							onClick={handleCancel}
 							disabled={isSaving}
-							className='rounded-xl border bg-white/60 px-4 py-2 text-sm disabled:opacity-60'>
+							className='admin-btn disabled:opacity-60'>
 							取消
 						</motion.button>
 						<motion.button
@@ -98,7 +98,7 @@ export default function Page() {
 							whileTap={{ scale: 0.95 }}
 							onClick={() => setIsPreviewMode(prev => !prev)}
 							disabled={isSaving}
-							className='rounded-xl border bg-white/60 px-4 py-2 text-sm'>
+							className='admin-btn'>
 							{isPreviewMode ? '继续编辑' : '预览'}
 						</motion.button>
 						<motion.button

@@ -345,7 +345,7 @@ export default function AdminBlogsPage() {
 											type='button'
 											onClick={() => setCategoryModalOpen(true)}
 											disabled={saving}
-											className='rounded-xl border bg-white/60 px-4 py-2 text-sm transition-colors hover:bg-white/80 disabled:opacity-60'>
+											className='admin-btn disabled:opacity-60'>
 											分类
 										</button>
 									)}
@@ -353,20 +353,20 @@ export default function AdminBlogsPage() {
 										type='button'
 										onClick={handleCancel}
 										disabled={saving}
-										className='rounded-xl border bg-white/60 px-6 py-2 text-sm disabled:opacity-60'>
+										className='admin-btn px-6 disabled:opacity-60'>
 										取消
 									</button>
 									<button
 										type='button'
 										onClick={selectedCount === editableItems.length ? handleDeselectAll : handleSelectAll}
-										className='rounded-xl border bg-white/60 px-4 py-2 text-sm transition-colors hover:bg-white/80'>
+										className='admin-btn'>
 										{selectedCount === editableItems.length ? '取消全选' : '全选'}
 									</button>
 									<button
 										type='button'
 										onClick={handleDeleteSelected}
 										disabled={selectedCount === 0}
-										className='rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600 transition-colors disabled:opacity-60'>
+										className='admin-btn-danger disabled:opacity-60'>
 										删除(已选:{selectedCount}篇)
 									</button>
 									<button
@@ -465,11 +465,11 @@ export default function AdminBlogsPage() {
 													{it.title || it.slug}
 												</Link>
 												{!editMode && (
-													<Link
-														href={`/admin/blogs/write/${it.slug}`}
-														onClick={event => event.stopPropagation()}
-														className='rounded-lg border bg-white/60 px-3 py-1 text-xs transition-colors hover:bg-white/80'>
-														编辑
+												<Link
+													href={`/admin/blogs/write/${it.slug}`}
+													onClick={event => event.stopPropagation()}
+													className='admin-btn px-3 py-1 text-xs'>
+													编辑
 													</Link>
 												)}
 												<div className='hidden flex-wrap items-center gap-2 sm:flex'>

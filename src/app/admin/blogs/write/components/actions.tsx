@@ -93,7 +93,7 @@ export function WriteActions() {
 							animate={{ opacity: 1, scale: 1 }}
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
-							className='rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600 transition-colors hover:bg-red-100'
+							className='admin-btn-danger'
 							disabled={loading}
 							onClick={handleDelete}>
 							删除
@@ -104,7 +104,7 @@ export function WriteActions() {
 							whileTap={{ scale: 0.95 }}
 							onClick={handleCancel}
 							disabled={saving}
-							className='bg-card rounded-xl border px-4 py-2 text-sm'>
+							className='admin-btn'>
 							取消
 						</motion.button>
 					</>
@@ -115,7 +115,7 @@ export function WriteActions() {
 					animate={{ opacity: 1, scale: 1 }}
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
-					className='bg-card rounded-xl border px-4 py-2 text-sm'
+					className='admin-btn'
 					disabled={loading}
 					onClick={handleImportMd}>
 					导入 MD
@@ -125,7 +125,7 @@ export function WriteActions() {
 					animate={{ opacity: 1, scale: 1 }}
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
-					className='bg-card rounded-xl border px-6 py-2 text-sm'
+					className='admin-btn px-6'
 					disabled={loading}
 					onClick={openPreview}>
 					预览
