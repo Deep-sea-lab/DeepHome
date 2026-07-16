@@ -46,14 +46,14 @@
 			"id": "github",
 			"type": "github",
 			"value": "https://github.com/Deep-sea-lab",
-			"label": "Github",
+			"label": "",
 			"order": 3
 		},
 		{
 			"id": "juejin",
 			"type": "bilibili",
 			"value": "https://space.bilibili.com/662154608",
-			"label": "哔哩哔哩",
+			"label": "",
 			"order": 2
 		},
 		{
@@ -62,6 +62,20 @@
 			"value": "3800907852@qq.com",
 			"label": "",
 			"order": 1
+		},
+		{
+			"id": "button-1784193345556",
+			"type": "x",
+			"value": "https://x.com/deep_sea_lab",
+			"label": "",
+			"order": 4
+		},
+		{
+			"id": "button-1784193456318",
+			"type": "qq",
+			"value": "/images/social-buttons/a96af9b63fcb0ee7.png",
+			"label": "",
+			"order": 5
 		}
 	],
 	"clockShowSeconds": false,
