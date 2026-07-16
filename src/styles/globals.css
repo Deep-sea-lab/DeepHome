@@ -26,21 +26,21 @@
 		@apply border-border;
 	}
 
-	/* Page zoom wrapper: centers the scaled content in the viewport */
+	/* Page zoom wrapper: scales the content to 92% and allows scrolling when overflow */
 	.page-zoom-wrapper {
-		position: fixed;
-		inset: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
+		position: relative;
+		width: 100%;
+		min-height: 100vh;
 		z-index: 10;
+		overflow-x: hidden;
+		overflow-y: visible;
 	}
 
 	.page-zoom-content {
 		position: relative;
-		width: 100vw;
-		height: 100vh;
+		width: 100%;
+		min-height: 100vh;
+		margin: 0 auto;
 		transform: scale(0.92);
 		transform-origin: center center;
 	}
@@ -131,6 +131,70 @@
 	@supports (corner-shape: squircle) {
 		corner-shape: squircle;
 		@apply rounded-[64px];
+	}
+}
+
+/* Admin UI: unified, consistent design tokens for the management interface.
+   Goal: same scale of corner radius (12-24px range) across all admin elements,
+   so the page feels coherent rather than mixing iOS-squircle with sharp/round. */
+
+/* Primary container: a section card on the management pages.
+   Uses moderate 16px / 24px-squircle radius (not 40-64px like the front-end). */
+@utility admin-card {
+	@apply rounded-2xl border border-white/50 bg-white/80 p-5;
+	box-shadow:
+		0 4px 20px -8px rgba(0, 0, 0, 0.06),
+		inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+	backdrop-filter: blur(8px);
+
+	@supports (corner-shape: squircle) {
+		corner-shape: squircle;
+		@apply rounded-[24px];
+	}
+}
+
+/* Nested content inside an admin card: a softer inner container. */
+@utility admin-inner {
+	@apply rounded-xl border border-white/40 bg-white/60 p-4;
+	@supports (corner-shape: squircle) {
+		corner-shape: squircle;
+		@apply rounded-2xl;
+	}
+}
+
+/* Secondary button: outlined, transparent fill. */
+@utility admin-btn {
+	@apply rounded-xl border border-white/60 bg-white/60 px-4 py-2 text-sm transition-colors hover:bg-white/90 disabled:opacity-60;
+	@supports (corner-shape: squircle) {
+		corner-shape: squircle;
+		@apply rounded-2xl;
+	}
+}
+
+/* Primary button: brand color, used for save / confirm actions. */
+@utility admin-btn-primary {
+	@apply rounded-xl border border-transparent bg-brand px-6 py-2 text-sm font-medium text-white transition-colors hover:opacity-90 disabled:opacity-60;
+	@supports (corner-shape: squircle) {
+		corner-shape: squircle;
+		@apply rounded-2xl;
+	}
+}
+
+/* Danger button: for destructive actions. */
+@utility admin-btn-danger {
+	@apply rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600 transition-colors hover:bg-red-100 disabled:opacity-60;
+	@supports (corner-shape: squircle) {
+		corner-shape: squircle;
+		@apply rounded-2xl;
+	}
+}
+
+/* Text input / textarea used in admin forms. */
+@utility admin-input {
+	@apply w-full rounded-xl border border-gray-200 bg-white/60 px-3 py-2 text-sm transition-colors focus:border-brand focus:outline-none;
+	@supports (corner-shape: squircle) {
+		corner-shape: squircle;
+		@apply rounded-2xl;
 	}
 }
 
