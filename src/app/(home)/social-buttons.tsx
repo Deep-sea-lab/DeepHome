@@ -148,8 +148,7 @@ export default function SocialButtons() {
 					href={button.value}
 					target='_blank'
 					{...commonProps}
-					className={`font-averia flex items-center gap-2 rounded-xl border bg-[#070707] text-xl text-white ${!hasLabel ? 'p-1.5' : 'px-3 py-1.5'}`}
-					style={{ boxShadow: ' inset 0 0 12px rgba(255, 255, 255, 0.4)' }}>
+					className={`font-averia flex items-center gap-2 overflow-hidden rounded-xl bg-[#070707] text-xl text-white ${!hasLabel ? 'p-1.5' : 'px-3 py-1.5'}`}>
 					<Icon className={'size-8'} />
 					{hasLabel && button.label}
 				</motion.a>
