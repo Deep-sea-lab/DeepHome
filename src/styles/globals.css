@@ -21,8 +21,28 @@
 	body {
 		@apply h-full bg-none;
 	}
+
 	* {
 		@apply border-border;
+	}
+
+	/* Page zoom wrapper: centers the scaled content in the viewport */
+	.page-zoom-wrapper {
+		position: fixed;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		z-index: 10;
+	}
+
+	.page-zoom-content {
+		position: relative;
+		width: 100vw;
+		height: 100vh;
+		transform: scale(0.92);
+		transform-origin: center center;
 	}
 
 	input:focus,
@@ -111,6 +131,16 @@
 	@supports (corner-shape: squircle) {
 		corner-shape: squircle;
 		@apply rounded-[64px];
+	}
+}
+
+/* Card inner rounded: for nested content inside a card with 8px padding.
+   Matches the outer card radius to keep corners visually concentric. */
+@utility card-rounded-inner {
+	@apply rounded-[32px];
+	@supports (corner-shape: squircle) {
+		corner-shape: squircle;
+		@apply rounded-[56px];
 	}
 }
 

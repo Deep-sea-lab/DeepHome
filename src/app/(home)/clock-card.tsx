@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import Card from '@/components/card'
 import { useCenterStore } from '@/hooks/use-center'
 import { useConfigStore } from './stores/config-store'
-import { useLayoutEditStore } from './stores/layout-edit-store'
 import { CARD_SPACING } from '@/consts'
 import { HomeDraggableLayer } from './home-draggable-layer'
 
@@ -13,7 +12,6 @@ export default function ClockCard() {
 	const router = useRouter()
 	const center = useCenterStore()
 	const { cardStyles, siteContent } = useConfigStore()
-	const editing = useLayoutEditStore(state => state.editing)
 	const [time, setTime] = useState(new Date())
 	const styles = cardStyles.clockCard
 	const hiCardStyles = cardStyles.hiCard
@@ -55,12 +53,8 @@ export default function ClockCard() {
 					</>
 				)}
 				<div
-					onClick={() => {
-						if (!editing) {
-							router.push('/clock')
-						}
-					}}
-					className='bg-secondary/20 card-rounded flex h-full w-full cursor-pointer items-center justify-center gap-1.5 p-2'>
+					onClick={() => router.push('/clock')}
+					className='bg-secondary/20 card-rounded-inner flex h-full w-full cursor-pointer items-center justify-center gap-1.5 p-2'>
 					<SevenSegmentDigit value={parseInt(hours[0])} />
 					<SevenSegmentDigit value={parseInt(hours[1])} />
 					<Colon />

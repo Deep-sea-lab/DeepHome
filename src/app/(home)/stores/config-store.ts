@@ -9,20 +9,17 @@ interface ConfigStore {
 	siteContent: SiteContent
 	cardStyles: CardStyles
 	regenerateKey: number
-	configDialogOpen: boolean
 	setSiteContent: (content: SiteContent) => void
 	setCardStyles: (styles: CardStyles) => void
 	resetSiteContent: () => void
 	resetCardStyles: () => void
 	regenerateBubbles: () => void
-	setConfigDialogOpen: (open: boolean) => void
 }
 
 export const useConfigStore = create<ConfigStore>((set, get) => ({
 	siteContent: { ...siteContent },
 	cardStyles: { ...cardStyles },
 	regenerateKey: 0,
-	configDialogOpen: false,
 	setSiteContent: (content: SiteContent) => {
 		set({ siteContent: content })
 	},
@@ -37,9 +34,5 @@ export const useConfigStore = create<ConfigStore>((set, get) => ({
 	},
 	regenerateBubbles: () => {
 		set(state => ({ regenerateKey: state.regenerateKey + 1 }))
-	},
-	setConfigDialogOpen: (open: boolean) => {
-		set({ configDialogOpen: open })
 	}
 }))
-

@@ -52,14 +52,18 @@ export default function Layout({ children }: PropsWithChildren) {
 			)}
 			<BlurredBubblesBackground colors={siteContent.backgroundColors} regenerateKey={regenerateKey} />
 
-			<main className='relative z-10 h-full'>
-				{children}
-				<NavCard />
+			<div className='page-zoom-wrapper'>
+				<div className='page-zoom-content'>
+					<main className='relative z-10 h-full'>
+						{children}
+						<NavCard />
 
-				{!maxSM && cardStyles.musicCard?.enabled !== false && <MusicCard />}
-			</main>
+						{!maxSM && cardStyles.musicCard?.enabled !== false && <MusicCard />}
+					</main>
 
-			{maxSM && init && <ScrollTopButton className='bg-brand/20 fixed right-6 bottom-8 z-50 shadow-md' />}
+					{maxSM && init && <ScrollTopButton className='bg-brand/20 fixed right-6 bottom-8 z-50 shadow-md' />}
+				</div>
+			</div>
 		</>
 	)
 }
