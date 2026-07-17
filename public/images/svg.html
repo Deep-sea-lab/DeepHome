@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>SVG 描边动画</title>
+<style>
+  body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
+  #stage { 
+    width: 800px; 
+    height: 600px; 
+    border: 1px solid #ccc; 
+    background: white; 
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  svg { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+
+<h3>SVG 描边动画播放器</h3>
+
+<div class="ctrl">
+  <input type="file" id="fileInput" accept=".svg">
+</div>
+
+<div id="stage">请选择一个 .svg 文件</div>
+
+<script>
+var strokePaths = [];
+var fillPaths = [];
+var maskCircles = [];
+var animationsPaused = false;
+
+function resolveFill(element) {
+  var el = element;
+  while (el) {
+    var fillAttr = el.getAttribute('fill');
+    if (fillAttr && fillAttr !== 'none') {
+      return fillAttr;
+    }
+    el = el.parentNode;
+  }
+  return '#000000';
+}
+
+function init(svg) {
+  var stage = document.getElementById('stage');
+  stage.innerHTML = '';
+  stage.appendChild(svg);
+
+  var defs = svg.querySelector('defs');
+  if (!defs) {
+    defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    svg.insertBefore(defs, svg.firstChild);
+  } else {
+    defs.innerHTML = '';
+  }
+
+  var originalPaths = Array.from(svg.querySelectorAll('path'));
+  strokePaths = [];
+  fillPaths = [];
+  maskCircles = [];
+
+  originalPaths.forEach(function (path, i) {
+    var fill = resolveFill(path);
+    var len = path.getTotalLength();
+    
+    var bbox = path.getBBox();
+    var cx = bbox.x + bbox.width / 2;
+    var cy = bbox.y + bbox.height / 2;
+    var maxRadius = Math.sqrt(Math.pow(bbox.width, 2) + Math.pow(bbox.height, 2)) * 0.6;
+
+    var maskId = 'ink-mask-' + i;
+    var mask = document.createElementNS('http://www.w3.org/2000/svg', 'mask');
+    mask.setAttribute('id', maskId);
+
+    var maskBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    maskBg.setAttribute('width', '100%');
+    maskBg.setAttribute('height', '100%');
+    maskBg.setAttribute('fill', 'black');
+    mask.appendChild(maskBg);
+
+    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', cx);
+    circle.setAttribute('cy', cy);
+    circle.setAttribute('r', '0px');
+    circle.setAttribute('fill', 'white');
+    mask.appendChild(circle);
+    defs.appendChild(mask);
+    maskCircles.push(circle);
+
+    path.style.fill = fill;
+    path.style.stroke = 'none';
+    path.setAttribute('mask', 'url(#' + maskId + ')');
+    fillPaths.push(path);
+
+    var strokePath = path.cloneNode(true);
+    strokePath.removeAttribute('mask');
+    strokePath.style.fill = 'none';
+    strokePath.style.stroke = fill;
+    strokePath.style.strokeWidth = '1px';
+    
+    strokePath._len = len;
+    strokePath._maxRadius = maxRadius;
+    strokePath.style.strokeDasharray = len;
+    strokePath.style.strokeDashoffset = len;
+
+    path.parentNode.insertBefore(strokePath, path.nextSibling);
+    strokePaths.push(strokePath);
+  });
+
+  play();
+}
+
+function play() {
+  var speed = 2500;
+  var pauseTime = 50;
+  var fillTime = 700;
+
+  resetAll(true);
+
+  strokePaths.forEach(function (path, i) {
+    var len = path._len;
+    if (!len) return;
+
+    var delay = (i % 120) * 8;
+
+    var draw = path.animate([
+      { strokeDashoffset: len },
+      { strokeDashoffset: 0 }
+    ], {
+      duration: speed,
+      delay: delay,
+      easing: 'ease-in-out',
+      fill: 'forwards'
+    });
+
+    draw.onfinish = function () {
+      draw.commitStyles();
+
+      setTimeout(function () {
+        var circle = maskCircles[i];
+        if (!circle) return;
+
+        var fillAnim = circle.animate([
+          { r: '0px' },
+          { r: path._maxRadius + 'px' }
+        ], {
+          duration: fillTime,
+          easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)', 
+          fill: 'forwards'
+        });
+
+        fillAnim.onfinish = function () {
+          fillAnim.commitStyles();
+        };
+      }, pauseTime);
+    };
+  });
+}
+
+function resetAll(keepState) {
+  strokePaths.forEach(function (p) {
+    p.getAnimations().forEach(function (anim) {
+      anim.cancel();
+    });
+    if (!keepState) {
+      p.style.strokeDashoffset = p._len || 0;
+    }
+  });
+
+  maskCircles.forEach(function (c) {
+    c.getAnimations().forEach(function (anim) {
+      anim.cancel();
+    });
+    if (!keepState) {
+      c.setAttribute('r', '0px');
+    }
+  });
+}
+
+document.getElementById('fileInput').addEventListener('change', function (e) {
+  var file = e.target.files[0];
+  if (!file) return;
+
+  var reader = new FileReader();
+  reader.onload = function () {
+    try {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(reader.result, 'image/svg+xml');
+      var svg = doc.querySelector('svg');
+      if (!svg) {
+        alert('无效的 SVG 文件');
+        return;
+      }
+      init(svg);
+    } catch (err) {
+      alert('解析出错: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+});
+</script>
+
+</body>
+</html>
