@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'motion/react'
 import { Heart } from 'lucide-react'
 import clsx from 'clsx'
 import { cn } from '@/lib/utils'
-import { toast } from 'sonner'
 import { BLOG_SLUG_KEY } from '@/consts'
 
 type LikeButtonProps = {
@@ -13,9 +12,9 @@ type LikeButtonProps = {
 	delay?: number
 }
 
-const ENDPOINT = 'https://blog-liker.yysuni1001.workers.dev/api/like'
+const ENDPOINT = 'http://blog-likes.deep-sea.cc.cd/like'
 
-export default function LikeButton({ slug = 'yysuni', delay, className }: LikeButtonProps) {
+export default function LikeButton({ slug = 'Deep-sea-lab', delay, className }: LikeButtonProps) {
 	slug = BLOG_SLUG_KEY + slug
 	const [liked, setLiked] = useState(false)
 	const [show, setShow] = useState(false)
@@ -35,14 +34,19 @@ export default function LikeButton({ slug = 'yysuni', delay, className }: LikeBu
 		}
 	}, [justLiked])
 
-	const fetcher = useCallback(async (url: string): Promise<number | null> => {
-		const res = await fetch(url, { method: 'GET', cache: 'no-store' })
+	const fetcher = useCallback(async (): Promise<number | null> => {
+		const res = await fetch(ENDPOINT, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ Url: slug }),
+			cache: 'no-store'
+		})
 		if (!res.ok) return null
 		const data = await res.json().catch(() => ({}))
-		return typeof data?.count === 'number' ? data.count : null
-	}, [])
+		return typeof data?.likes === 'number' ? data.likes : null
+	}, [slug])
 
-	const { data: fetchedCount, mutate } = useSWR(slug ? `${ENDPOINT}?slug=${encodeURIComponent(slug)}` : null, fetcher, {
+	const { data: fetchedCount, mutate } = useSWR(slug ? `likes:${slug}` : null, fetcher, {
 		revalidateOnFocus: false,
 		dedupingInterval: 1000 * 10
 	})
@@ -64,11 +68,13 @@ export default function LikeButton({ slug = 'yysuni', delay, className }: LikeBu
 		setTimeout(() => setParticles([]), 1000)
 
 		try {
-			const url = `${ENDPOINT}?slug=${encodeURIComponent(slug)}`
-			const res = await fetch(url, { method: 'POST' })
+			const res = await fetch(ENDPOINT, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ Url: slug, Add: 1 })
+			})
 			const data = await res.json().catch(() => ({}))
-			if (data.reason == 'rate_limited') toast('谢谢啦😘，今天已经不能再点赞啦💕')
-			const value = typeof data?.count === 'number' ? data.count : (fetchedCount ?? 0) + 1
+			const value = typeof data?.likes === 'number' ? data.likes : (fetchedCount ?? 0) + 1
 			await mutate(value, { revalidate: false })
 		} catch {
 			// ignore
