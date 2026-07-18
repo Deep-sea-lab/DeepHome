@@ -8,8 +8,8 @@
 	--color-card: #ffffff66;
 	--color-article: #ffffffcc;
 
-	--font-averia: 'Averia Gruesa Libre', sans-serif;
+	--font-averia: 'Averia Gruesa Libre', 'Douyin Sans', sans-serif;
 	--font-sans:
-		'PingFang SC', -apple-system, system-ui, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif, BlinkMacSystemFont, 'Helvetica Neue',
+		'Douyin Sans', -apple-system, system-ui, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif, BlinkMacSystemFont, 'Helvetica Neue',
 		'Hiragino Sans GB', 'Microsoft YaHei', Arial;
 }
